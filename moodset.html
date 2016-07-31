@@ -5,19 +5,18 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 	<link rel="stylesheet" type="text/css" href="css/moodset.css">
-	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+    	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
 	<script>
-        
 	        SC.initialize({
-	          client_id: '831616a2852a0d419173946016fbf67d',
+	          client_id: '2e966bfc662c6a330ef5ff8b7fd07c35',
 	          redirect_uri: 'https://samcasm.github.io/latestMoodset/callback.html'
 	        });
-	        
-	        SC.get("/tracks", function(response) {
-	            console.log(response);
-	            for (var i = 0; i < response.length; i++) {
-	                $("ul").append("<li>" + response[i].title + "</li>");
-	            }
+	
+	        // initiate auth popup
+	        SC.connect().then(function() {
+	          return SC.get('/me');
+	        }).then(function(me) {
+	          alert('Hello, ' + me.username);
 	        });
     	</script>
 </head>
